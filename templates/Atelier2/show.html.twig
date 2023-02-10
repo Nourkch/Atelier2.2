@@ -1,0 +1,104 @@
+Bonjour {{name |lower}} !! 
+<hr>
+{% set nb=123 %}
+{{nb}}
+
+<hr>
+
+{% for i in f %}
+{{i.Titre}}
+{% endfor %}
+
+<hr>
+
+<table border = "2">
+
+<tr>
+<td>ref </td>
+<td>Titre </td>
+<td> Description </td>
+<td> nb_participants </td>
+<td> Action </td>
+</tr>
+
+{% for i in f %}
+<tr>
+<td> {{i.ref}}</td>
+<td> {{i.Titre}}</td>
+<td> {{i.Description}}</td>
+<td> {{i.nb_participants}} </td>
+<td> 
+{% if i.nb_participants > 0 %}
+<input type="submit" value="inscription">
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<hr>
+
+nb formations =  {{f |length}}
+
+<hr>
+
+{% set nbP=0 %}
+{% for i in f %}
+{% set nbP=nbP+i.nb_participants %}
+{% endfor %}
+Nombre participants : {{nbP}}
+
+<hr>
+
+{% set nbmax=0 %}
+{% set formationmax=" " %}
+{% for i in f %}
+{% if nbmax <i.nb_participants %}
+{% set nbmax=i.nb_participants %}
+{% set formationmax=i.Titre %}
+{% endif %}
+{% endfor %}
+Nombre participants max : {{nbmax}} de le formation {{formationmax}}
+
+<hr>
+{# im a comment :) #}
+{% if name starts with 'm'%}
+bonsoir maher
+{% endif %}
+
+<hr>
+
+{{dump(f)}}
+ 
+ <hr>
+
+ 
+<table border = "2">
+
+<tr>
+<td>ref </td>
+<td>Titre </td>
+<td> Description </td>
+<td> nb_participants </td>
+<td> Action </td>
+</tr>
+
+{% for i in f %}
+<tr>
+<td> {{i.ref}}</td>
+<td> {{i.Titre}}</td>
+<td> {{i.Description}}</td>
+<td> {{i.nb_participants}} </td>
+<td> 
+{% if i.nb_participants > 0 %}
+<a href="{{path('detail',{'t': i.Titre })}}"> detail </a>
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+
+
